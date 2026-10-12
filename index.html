@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Data portfolio of Travis Gubbe, statistics M.S. student at San Diego State University.">
+<title>Travis Gubbe Portfolio</title>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; each project is a text block beside a "figure plate" drawn on graph paper, stacking on phones. */
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --fg:#18202B; --muted:#5A6676; --rule:#D5DBE3;
+  --grid:rgba(48,70,197,.07); --accent:#3046C5; --accent-soft:rgba(48,70,197,.12);
+  --data2:#B5780F; --ok:#2E7D5B;
+  --f-display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11151B; --surface:#171C24; --fg:#E3E8EF; --muted:#9AA6B6; --rule:#2A323E;
+  --grid:rgba(142,160,255,.07); --accent:#8EA0FF; --accent-soft:rgba(142,160,255,.14);
+  --data2:#E2B04F; --ok:#5CC497; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11151B; --surface:#171C24; --fg:#E3E8EF; --muted:#9AA6B6; --rule:#2A323E;
+  --grid:rgba(142,160,255,.07); --accent:#8EA0FF; --accent-soft:rgba(142,160,255,.14);
+  --data2:#E2B04F; --ok:#5CC497; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:68rem;margin:0 auto;padding-inline:clamp(16px,4vw,40px);padding-block:0 4rem}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+.label{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+nav{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:center;padding-block:1.5rem}
+nav .mark{font-family:var(--f-display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;color:var(--fg);text-decoration:none}
+nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;list-style:none;margin:0;padding:0}
+nav ul a{color:var(--muted);text-decoration:none;font-size:.9rem}
+nav ul a:hover{color:var(--fg)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:2.5rem;align-items:end;padding-block:3rem 3.5rem;border-bottom:1px solid var(--rule)}
+.hero h1{font-size:clamp(2.3rem,5.5vw,3.8rem);font-weight:800;letter-spacing:-.035em}
+.hero h1 span{color:var(--accent)}
+.hero .lede{margin-top:1.25rem;font-size:1.15rem;max-width:34rem;color:var(--fg)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:6px;font-weight:500;font-size:.92rem;text-decoration:none;border:1px solid var(--rule);color:var(--fg);background:var(--surface)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+.console{font-family:var(--f-mono);font-size:.82rem;line-height:1.7;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:1rem 1.15rem;min-width:0;overflow-x:auto}
+.console .p{color:var(--accent)}
+.console .c{color:var(--muted)}
+.console pre{margin:0;font:inherit;white-space:pre}
+
+/* sections */
+section{padding-block:3.5rem 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1rem;margin-bottom:2rem}
+.sec-head h2{font-size:clamp(1.6rem,3.5vw,2.1rem);letter-spacing:-.02em}
+
+/* projects */
+.project{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2.5rem;padding-block:2.5rem;border-top:1px solid var(--rule)}
+.project:first-of-type{border-top:0;padding-top:0}
+.project h3{font-size:1.55rem;letter-spacing:-.015em;margin-top:.5rem}
+.project .desc{margin-top:.9rem;max-width:36rem}
+.project ul.find{margin:1rem 0 0;padding-left:1.1rem;display:grid;gap:.35rem;max-width:36rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+.tag{font-family:var(--f-mono);font-size:.74rem;padding:.15rem .5rem;border-radius:4px;background:var(--accent-soft);color:var(--fg)}
+.links{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem;margin-top:1.1rem;font-size:.92rem;font-weight:500}
+.status{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--data2)}
+.status::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--data2)}
+
+/* figure plate: graph paper */
+figure{margin:0;min-width:0;align-self:start;background-color:var(--surface);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:16px 16px;border:1px solid var(--rule);border-radius:8px;padding:1.1rem 1.1rem .9rem}
+figure svg{display:block;width:100%;height:auto;overflow:visible}
+figcaption{margin-top:.6rem;font-size:.82rem;color:var(--muted);line-height:1.5}
+figcaption b{font-family:var(--f-mono);font-weight:500;color:var(--fg)}
+.ax{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.lab{font-family:var(--f-body);font-size:12.5px;fill:var(--fg)}
+.val{font-family:var(--f-mono);font-size:11.5px;fill:var(--fg)}
+.gl{stroke:var(--rule);stroke-width:1}
+.tbl{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{padding:.5rem .4rem;text-align:left;border-bottom:1px solid var(--rule)}
+.tbl th{font-family:var(--f-mono);font-weight:500;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tbl td.n{font-family:var(--f-mono);text-align:right}
+.tbl tr:last-child td{border-bottom:0}
+.up{color:var(--ok)} .down{color:var(--data2)}
+.pipeline{display:grid;gap:.6rem;font-size:.9rem}
+.pipeline div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.75rem;align-items:baseline}
+.pipeline .k{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+
+/* about / toolkit */
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2.5rem}
+.about p{max-width:38rem}
+.about p+p{margin-top:1rem}
+.kit{display:grid;gap:1.1rem}
+.kit h3{font-family:var(--f-mono);font-weight:500;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kit p{margin-top:.3rem}
+
+footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;color:var(--muted);font-size:.88rem}
+
+@media (max-width:800px){
+  .hero,.project,.about{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-block:2rem 2.5rem}
+}
+@media (prefers-reduced-motion:no-preference){
+  .bar{transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes grow{from{transform:scaleX(.02)}to{transform:scaleX(1)}}
+}
+
+/* views */
+nav ul a[aria-current="page"]{color:var(--fg);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px}
+.portrait{display:flex;justify-content:flex-end}
+.photo{width:min(100%,19rem);aspect-ratio:4/5;max-width:100%;border-radius:10px;border:1px solid var(--rule);
+  background-color:var(--surface);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:16px 16px;
+  display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:4.5rem;letter-spacing:-.04em;color:var(--accent);overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.hl{display:grid;gap:.4rem;align-content:start;padding:1.1rem;border:1px solid var(--rule);border-radius:8px;background:var(--surface);color:var(--fg);text-decoration:none}
+.hl b{font-family:var(--f-display);font-size:1.15rem;letter-spacing:-.01em}
+.hl span:last-child{color:var(--muted);font-size:.92rem}
+.hl:hover{border-color:var(--accent)}
+.page-head{padding-block:2.5rem 1rem}
+.page-head h1{font-size:clamp(2.4rem,6vw,3.6rem);font-weight:800;letter-spacing:-.035em}
+.page-head p{margin-top:.75rem;max-width:38rem;color:var(--muted);font-size:1.05rem}
+.sec-head.group{margin-top:2.5rem;margin-bottom:0;padding-bottom:1rem;border-bottom:2px solid var(--fg)}
+.sec-head.group h2{font-size:1.25rem}
+.sec-head.group + .project,.sec-head.group + * + .project{border-top:0}
+#projects .project{padding-block:2.5rem}
+.tbl-wrap{overflow-x:auto}
+.tbl.bars td:last-child{display:flex;align-items:center;gap:.5rem;min-width:9rem}
+.hb{flex:1;height:10px;background:var(--rule);border-radius:2px;overflow:hidden}
+.hb i{display:block;height:100%;background:var(--accent)}
+.tbl.bars tr.best td:first-child{font-weight:600}
+.tbl.bars span.n{font-family:var(--f-mono);font-size:.85rem;min-width:3.2rem;text-align:right}
+@media (max-width:800px){.hl-grid{grid-template-columns:minmax(0,1fr)}.portrait{justify-content:flex-start}.photo{width:min(100%,14rem)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Main">
+    <a class="mark" href="#home">Travis Gubbe</a>
+    <ul>
+      <li><a href="#home" data-view="home">Home</a></li>
+      <li><a href="#projects" data-view="projects">Projects</a></li>
+    </ul>
+  </nav>
+
+  <main id="home" class="view" aria-labelledby="home-h">
+    <header class="hero">
+      <div>
+        <p class="label">Statistics M.S. · San Diego State University</p>
+        <h1 id="home-h">Hi, I'm Travis. I turn messy data into <span>clear answers.</span></h1>
+        <p class="lede">I'm finishing a master's in statistics at San Diego State University, graduating in December 2026, and I'm looking for my first role in data analysis. My work ranges from Bayesian spatial models and mixed effects models to classifiers and exploratory analysis, in both R and Python.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn" href="https://www.linkedin.com/in/travis-gubbe-a25112192/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/tgubbe" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="photo"><img src="data:image/jpeg;base64,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" alt="Travis Gubbe smiling, leaning against a stone column" width="300" height="375"></div>
+      </div>
+    </header>
+
+    <section class="highlights" aria-labelledby="hl-h">
+      <div class="sec-head"><h2 id="hl-h">Recent work</h2><a class="label" href="#projects">All projects →</a></div>
+      <div class="hl-grid">
+        <a class="hl" href="#projects"><span class="label">Bayesian · R</span><b>Spatial probit models</b><span>Neighboring counties share their rankings: ρ = 0.619.</span></a>
+        <a class="hl" href="#projects"><span class="label">Longitudinal · R</span><b>Mixed effects models</b><span>Nonlinear model cut AIC from 729 to 495.</span></a>
+        <a class="hl" href="#projects"><span class="label">Classification · R</span><b>Prostate cancer model</b><span>AUC 0.817; sensitivity raised to 77%.</span></a>
+      </div>
+    </section>
+
+    <section aria-labelledby="about-h">
+    <div class="sec-head"><h2 id="about-h">About me</h2></div>
+    <div class="about">
+      <div>
+        <p>I am a master’s student in statistics at San Diego State University, scheduled to graduate in December 2026. My master’s program has taught me a range of statistical modeling techniques, including mixed effects models, nonlinear regression modeling, neural networks, and more. I’ve applied these in projects predicting the cost of new housing projects in two New York villages, predicting prostate cancer in men, and modeling how neighboring counties influence one another’s rankings. These projects demonstrate my need to answer the questions behind the data, an important feature in my new journey into data analytics. Though embarking on a new career path has had its challenges, I enjoy finding details in the data to tell a story, leading to a real “a-ha!” moment.</p>
+        <p>Aside from my pursuit of a new career, I enjoy traveling with my family and gaining new experiences with my young daughter. After my graduation, I am looking for a role in the data analytics and data science community where I can answer real-world questions about both the past and the future.</p>
+      </div>
+      <div class="kit">
+        <div><h3>Languages</h3><p>Python, R (R Markdown, Sweave/LaTeX)</p></div>
+        <div><h3>Python libraries</h3><p>pandas, NumPy, scikit-learn, TensorFlow/Keras, seaborn, matplotlib, NLTK</p></div>
+        <div><h3>Methods</h3><p>Multiple linear regression,nonlinear regression, linear and nonlinear mixed effects models, logistic regression, random forests, neural networks, exploratory data analysis, text analysis</p></div>
+        <div><h3>R packages</h3><p>dplyr, tidyr, ggplot2, nlme, car, splines, spatialprobit</p></div>
+        <div><h3>Tools</h3><p>Google Colab, Jupyter, RStudio, Git and GitHub</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="contact-h">
+    <div class="sec-head"><h2 id="contact-h">Get in touch</h2></div>
+    <p style="max-width:38rem">I'm open to data analyst roles and internships. The best way to reach me is on LinkedIn.</p>
+    <div class="ctas" style="display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem">
+      <a class="btn primary" href="https://www.linkedin.com/in/travis-gubbe-a25112192/" target="_blank" rel="noopener">Message me on LinkedIn</a>
+      <a class="btn" href="https://github.com/tgubbe" target="_blank" rel="noopener">github.com/tgubbe</a>
+    </div>
+  </section>
+
+  
+  </main>
+
+  <section id="projects" class="view" aria-labelledby="projects-h" hidden>
+    <div class="page-head">
+      <h1 id="projects-h">Projects</h1>
+      <p>Seven projects from my statistics master's program and earlier work, each with the code, data and full write-up on GitHub.</p>
+    </div>
+
+    <div class="sec-head group"><h2>Master's program · SDSU</h2><span class="label">4 projects</span></div>
+    <!-- 0. Probit -->
+    <article class="project">
+      <div>
+        <p class="label">Bayesian spatial modeling · R · STAT coursework</p>
+        <h3>Bayesian Spatial Probit Models</h3>
+        <p class="desc">What puts a county in China's national top-100 ranking, and does a county's status depend on its neighbors? Using panel data on 55 counties in Jiangsu province from 2010 to 2020 (605 county-years), I built two Bayesian spatial probit models with MCMC sampling: a linear model and a varying coefficient model that uses regression splines to let the baseline shift over time.</p>
+        <ul class="find">
+          <li>Screened predictors with correlation and VIF checks, keeping GDP, population and two financial indexes (cy, jr), all standardized.</li>
+          <li>Every predictor has a positive effect with a 95% credible interval that excludes zero.</li>
+          <li>Spatial correlation ρ = 0.619: top-ranked counties cluster together, so a county's neighbors help predict its own ranking.</li>
+          <li>The varying coefficient model fit better, with a lower DIC (680.78 vs. 691.08) and a slightly higher AUC (0.791 vs. 0.783).</li>
+        </ul>
+        <div class="tags"><span class="tag">spatialprobit</span><span class="tag">MCMC</span><span class="tag">B-splines</span><span class="tag">DIC / ROC-AUC</span><span class="tag">LaTeX / Sweave</span></div>
+        <div class="links">
+          <a href="https://github.com/tgubbe/Probit_Models" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/tgubbe/Probit_Models/blob/main/Probit%20Modeling.pdf" target="_blank" rel="noopener">Report (PDF)</a>
+          <a href="https://github.com/tgubbe/Probit_Models/blob/main/Probit_Models.R" target="_blank" rel="noopener">R code</a>
+        </div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 440 220" role="img" aria-labelledby="f0t">
+          <title id="f0t">Posterior means and 95% credible intervals from the linear spatial probit model. Intercept -0.261, GDP 0.319, population 0.432, cy 0.357, jr 0.198, spatial correlation rho 0.619. All intervals exclude zero.</title>
+          <line x1="170.8" y1="8" x2="170.8" y2="196" class="gl"/>
+          <text class="ax" x="170.8" y="212" text-anchor="middle">-0.4</text>
+          <line x1="212.3" y1="8" x2="212.3" y2="196" class="gl"/>
+          <text class="ax" x="212.3" y="212" text-anchor="middle">-0.2</text>
+          <line x1="253.8" y1="8" x2="253.8" y2="196" stroke="var(--muted)" stroke-dasharray="3 3"/>
+          <text class="ax" x="253.8" y="212" text-anchor="middle">0</text>
+          <line x1="295.4" y1="8" x2="295.4" y2="196" class="gl"/>
+          <text class="ax" x="295.4" y="212" text-anchor="middle">0.2</text>
+          <line x1="336.9" y1="8" x2="336.9" y2="196" class="gl"/>
+          <text class="ax" x="336.9" y="212" text-anchor="middle">0.4</text>
+          <line x1="378.5" y1="8" x2="378.5" y2="196" class="gl"/>
+          <text class="ax" x="378.5" y="212" text-anchor="middle">0.6</text>
+          <line x1="420.0" y1="8" x2="420.0" y2="196" class="gl"/>
+          <text class="ax" x="420.0" y="212" text-anchor="middle">0.8</text>
+          <text class="lab" x="0" y="28">Intercept</text>
+          <line x1="172.2" y1="24" x2="227.3" y2="24" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="199.6" cy="24" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="233.3" y="28">-0.261</text>
+          <text class="lab" x="0" y="58">GDP</text>
+          <line x1="284.6" y1="54" x2="355.8" y2="54" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="320.1" cy="54" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="361.8" y="58">0.319</text>
+          <text class="lab" x="0" y="88">Population</text>
+          <line x1="308.3" y1="84" x2="378.7" y2="84" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="343.6" cy="84" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="384.7" y="88">0.432</text>
+          <text class="lab" x="0" y="118">cy</text>
+          <line x1="293.1" y1="114" x2="362.7" y2="114" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="328.0" cy="114" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="368.7" y="118">0.357</text>
+          <text class="lab" x="0" y="148">jr</text>
+          <line x1="264.0" y1="144" x2="325.7" y2="144" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="295.0" cy="144" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="331.7" y="148">0.198</text>
+          <line x1="0" y1="168" x2="420" y2="168" class="gl"/>
+          <text class="lab" x="0" y="192">ρ spatial</text>
+          <line x1="366.0" y1="188" x2="398.8" y2="188" stroke="var(--data2)" stroke-width="2"/>
+          <circle cx="382.4" cy="188" r="4.5" fill="var(--data2)"/>
+          <text class="val" x="404.8" y="192">0.619</text>
+        </svg>
+        <table class="tbl" style="margin-top:.75rem">
+          <thead><tr><th scope="col">Model</th><th scope="col" style="text-align:right">DIC ↓</th><th scope="col" style="text-align:right">AUC ↑</th></tr></thead>
+          <tbody>
+            <tr><td>Linear spatial probit</td><td class="n">691.08</td><td class="n">0.783</td></tr>
+            <tr><td>Varying coefficient</td><td class="n up">680.78</td><td class="n up">0.791</td></tr>
+          </tbody>
+        </table>
+        <figcaption><b>Fig. 1</b> Posterior means with 95% credible intervals (linear model, standardized predictors). No interval crosses the dashed zero line. 10,000 MCMC draws, 2,000 burn-in.</figcaption>
+      </figure>
+    </article>
+
+    <!-- Mixed modeling -->
+    <article class="project">
+      <div>
+        <p class="label">Longitudinal modeling · R · STAT coursework</p>
+        <h3>Mixed Effects Models for HIV Treatment Data</h3>
+        <p class="desc">How does each patient's viral load change during antiviral treatment? Using AIDS clinical trial data (48 patients, 361 measurements, first 90 days), I fit four mixed effects models, two linear and two nonlinear with exponential decay, then estimated each patient's own trajectory with best linear unbiased predictors (BLUPs).</p>
+        <ul class="find">
+          <li>The nonlinear random coefficient model (NLRC) fit best by a wide margin, with an AIC of 494.95 against 729.20 for the linear mixed model.</li>
+          <li>The linear models drew jagged lines through the data, while exponential decay curves matched how viral load actually falls.</li>
+          <li>Across 328 patient-visits, NLRC gave the closest prediction 50.3% of the time, and the two nonlinear models together 77.4%.</li>
+          <li>Patient-level BLUPs show how far each person sits from the average response, which helps clinicians judge individual treatment progress.</li>
+        </ul>
+        <div class="tags"><span class="tag">nlme</span><span class="tag">random effects</span><span class="tag">BLUPs</span><span class="tag">AIC</span></div>
+        <div class="links">
+          <a href="https://github.com/tgubbe/Mixed_Modeling" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/tgubbe/Mixed_Modeling/blob/main/Stat700_Project_Final.pdf" target="_blank" rel="noopener">Report (PDF)</a>
+          <a href="https://github.com/tgubbe/Mixed_Modeling/blob/main/Stat700_Project.R" target="_blank" rel="noopener">R code</a>
+        </div>
+      </div>
+      <figure>
+        <div class="tbl-wrap">
+        <table class="tbl bars">
+          <caption class="label" style="text-align:left;padding-bottom:.5rem">Four models, two ways to judge them</caption>
+          <thead><tr><th scope="col">Model</th><th scope="col" style="text-align:right">AIC ↓</th><th scope="col">Closest to observed</th></tr></thead>
+          <tbody>
+            <tr><td>Linear mixed (LME)</td><td class="n">729.20</td><td><span class="hb"><i style="width:10.4%"></i></span><span class="n">10.4%</span></td></tr>
+            <tr><td>Random coef. (RCM)</td><td class="n">727.63</td><td><span class="hb"><i style="width:12.2%"></i></span><span class="n">12.2%</span></td></tr>
+            <tr><td>Nonlinear mixed (NLM)</td><td class="n">602.04</td><td><span class="hb"><i style="width:27.1%"></i></span><span class="n">27.1%</span></td></tr>
+            <tr class="best"><td>Nonlinear random coef. (NLRC)</td><td class="n up">494.95</td><td><span class="hb"><i style="width:50.3%"></i></span><span class="n up">50.3%</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <figcaption><b>Fig. 2</b> Both measures pick the same winner. "Closest to observed" counts how often each model's patient-specific prediction was nearest the measured viral load, out of 328 patient-visits.</figcaption>
+      </figure>
+    </article>
+
+    <!-- Prostate -->
+    <article class="project">
+      <div>
+        <p class="label">Classification · R · STAT coursework</p>
+        <h3>Predicting Prostate Cancer Spread</h3>
+        <p class="desc">Can routine test results flag patients whose tumor has penetrated the prostatic capsule? Using 375 patients from an Ohio State University Comprehensive Cancer Center study, I built a logistic regression model with stepwise AIC selection, checked it with deviance residuals, Cook's distance and a Hosmer-Lemeshow test, then tuned its decision cutoff for clinical use.</p>
+        <ul class="find">
+          <li>Three predictors made the final model: digital rectal exam result, PSA level and Gleason score. Age, race and all interaction terms dropped out.</li>
+          <li>A nodule on the right lobe raises the odds of capsule penetration 4.7×; each extra Gleason point raises them 2.7×.</li>
+          <li>AUC of 0.817. Lowering the cutoff from 0.50 to 0.39 raised sensitivity from 61% to 77%, because a missed case costs more than an extra follow-up exam.</li>
+        </ul>
+        <div class="tags"><span class="tag">logistic regression</span><span class="tag">stepwise AIC</span><span class="tag">ROC / cutoff tuning</span><span class="tag">Hosmer-Lemeshow</span></div>
+        <div class="links">
+          <a href="https://github.com/tgubbe/Prostate_Cancer_Model" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/tgubbe/Prostate_Cancer_Model/blob/main/DAR2_Final_Report.pdf" target="_blank" rel="noopener">Report (PDF)</a>
+          <a href="https://github.com/tgubbe/Prostate_Cancer_Model/blob/main/DAR2_Analysis.Rmd" target="_blank" rel="noopener">R Markdown</a>
+        </div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 440 166" role="img" aria-labelledby="f3t">
+          <title id="f3t">Sensitivity and specificity at two cutoffs. At 0.50: sensitivity 0.61, specificity 0.87. At the ROC-optimal 0.39: sensitivity 0.77, specificity 0.78. AUC 0.817.</title>
+          <line x1="150" y1="8" x2="150" y2="120" class="gl"/><text class="ax" x="150" y="136" text-anchor="middle">0%</text><line x1="217.5" y1="8" x2="217.5" y2="120" class="gl"/><text class="ax" x="217.5" y="136" text-anchor="middle">25%</text><line x1="285.0" y1="8" x2="285.0" y2="120" class="gl"/><text class="ax" x="285.0" y="136" text-anchor="middle">50%</text><line x1="352.5" y1="8" x2="352.5" y2="120" class="gl"/><text class="ax" x="352.5" y="136" text-anchor="middle">75%</text><line x1="420" y1="8" x2="420" y2="120" class="gl"/><text class="ax" x="420" y="136" text-anchor="middle">100%</text>
+          <text class="lab" x="0" y="30">Cutoff 0.50</text>
+          <text class="ax" x="0" y="45">default</text>
+          <rect x="150" y="16" width="164.7" height="13" rx="2" fill="var(--accent)" class="bar"/>
+          <text class="val" x="320.7" y="26.5">0.61</text>
+          <rect x="150" y="33" width="234.9" height="13" rx="2" fill="var(--data2)" class="bar"/>
+          <text class="val" x="390.9" y="43.5">0.87</text>
+          <text class="lab" x="0" y="90">Cutoff 0.39</text>
+          <text class="ax" x="0" y="105">ROC optimal</text>
+          <rect x="150" y="76" width="207.9" height="13" rx="2" fill="var(--accent)" class="bar"/>
+          <text class="val" x="363.9" y="86.5">0.77</text>
+          <rect x="150" y="93" width="210.6" height="13" rx="2" fill="var(--data2)" class="bar"/>
+          <text class="val" x="366.6" y="103.5">0.78</text>
+          <rect x="150" y="152" width="10" height="8" rx="1" fill="var(--accent)"/>
+          <text class="ax" x="165" y="159.5">sensitivity (cases caught)</text>
+          <rect x="330" y="152" width="10" height="8" rx="1" fill="var(--data2)"/>
+          <text class="ax" x="345" y="159.5">specificity</text>
+        </svg>
+        <figcaption><b>Fig. 3</b> Moving the cutoff trades a little specificity for many more caught cases. Model AUC = 0.817.</figcaption>
+      </figure>
+    </article>
+
+    
+    <!-- Expenditures -->
+    <article class="project">
+      <div>
+        <p class="label">Linear regression · R · STAT coursework</p>
+        <h3>Predicting Municipal Expenditures for New Housing</h3>
+        <p class="desc">Two New York villages, Monroe and Warwick, are planning new housing projects and need to know how much spending per resident to expect before deciding on tax changes. Using 914 New York municipalities, I log-transformed heavily skewed variables, focused on high-population, high-density areas, and built a regression model to forecast each village's spending.</p>
+        <ul class="find">
+          <li>Chose seven predictors with stepwise AIC, cross-checked against BIC and Mallows' Cp best-subset searches, and checked multicollinearity with VIF.</li>
+          <li>Wealth, population, income, density, growth rate and the share of revenue from state and federal grants all matter (adjusted R² = 0.63).</li>
+          <li>Warwick's spending is forecast to climb from $265 to $302 per person by 2025, while Monroe's stays near $240. Warwick may need new funding; Monroe likely won't.</li>
+        </ul>
+        <div class="tags"><span class="tag">multiple regression</span><span class="tag">log transforms</span><span class="tag">stepwise AIC / BIC / Cp</span><span class="tag">prediction intervals</span></div>
+        <div class="links">
+          <a href="https://github.com/tgubbe/Expenditures_Prediction_NY" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/tgubbe/Expenditures_Prediction_NY/blob/main/DAR_Report_Final.pdf" target="_blank" rel="noopener">Report (PDF)</a>
+        </div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 440 224" role="img" aria-labelledby="f4t">
+          <title id="f4t">Predicted spending per person with 95% intervals. Monroe: 1992 $237, 2005 $244, 2025 $242. Warwick: 1992 $265, 2005 $287, 2025 $302.</title>
+          <line x1="150.0" y1="8" x2="150.0" y2="200" class="gl"/><text class="ax" x="150.0" y="216" text-anchor="middle">$100</text>
+          <line x1="204.0" y1="8" x2="204.0" y2="200" class="gl"/><text class="ax" x="204.0" y="216" text-anchor="middle">$200</text>
+          <line x1="258.0" y1="8" x2="258.0" y2="200" class="gl"/><text class="ax" x="258.0" y="216" text-anchor="middle">$300</text>
+          <line x1="312.0" y1="8" x2="312.0" y2="200" class="gl"/><text class="ax" x="312.0" y="216" text-anchor="middle">$400</text>
+          <line x1="366.0" y1="8" x2="366.0" y2="200" class="gl"/><text class="ax" x="366.0" y="216" text-anchor="middle">$500</text>
+          <line x1="420.0" y1="8" x2="420.0" y2="200" class="gl"/><text class="ax" x="420.0" y="216" text-anchor="middle">$600</text>
+          <text class="lab" x="0" y="26">Monroe · 1992</text>
+          <line x1="165.7" y1="22" x2="332.0" y2="22" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="165.7" y1="17" x2="165.7" y2="27" stroke="var(--accent)" stroke-width="2"/><line x1="332.0" y1="17" x2="332.0" y2="27" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="224.0" cy="22" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="338.0" y="26">$237</text>
+          <text class="lab" x="0" y="56">Monroe · 2005</text>
+          <line x1="167.8" y1="52" x2="339.0" y2="52" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="167.8" y1="47" x2="167.8" y2="57" stroke="var(--accent)" stroke-width="2"/><line x1="339.0" y1="47" x2="339.0" y2="57" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="227.8" cy="52" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="345.0" y="56">$244</text>
+          <text class="lab" x="0" y="86">Monroe · 2025</text>
+          <line x1="166.7" y1="82" x2="336.3" y2="82" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="166.7" y1="77" x2="166.7" y2="87" stroke="var(--accent)" stroke-width="2"/><line x1="336.3" y1="77" x2="336.3" y2="87" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="226.7" cy="82" r="4.5" fill="var(--accent)"/>
+          <text class="val" x="342.3" y="86">$242</text>
+          <line x1="0" y1="104" x2="420" y2="104" class="gl"/>
+          <text class="lab" x="0" y="132">Warwick · 1992</text>
+          <line x1="173.2" y1="128" x2="360.1" y2="128" stroke="var(--data2)" stroke-width="2"/>
+          <line x1="173.2" y1="123" x2="173.2" y2="133" stroke="var(--data2)" stroke-width="2"/><line x1="360.1" y1="123" x2="360.1" y2="133" stroke="var(--data2)" stroke-width="2"/>
+          <circle cx="239.1" cy="128" r="4.5" fill="var(--data2)"/>
+          <text class="val" x="366.1" y="132">$265</text>
+          <text class="lab" x="0" y="162">Warwick · 2005</text>
+          <line x1="179.7" y1="158" x2="382.7" y2="158" stroke="var(--data2)" stroke-width="2"/>
+          <line x1="179.7" y1="153" x2="179.7" y2="163" stroke="var(--data2)" stroke-width="2"/><line x1="382.7" y1="153" x2="382.7" y2="163" stroke="var(--data2)" stroke-width="2"/>
+          <circle cx="251.0" cy="158" r="4.5" fill="var(--data2)"/>
+          <text class="val" x="388.7" y="162">$287</text>
+          <text class="lab" x="0" y="192">Warwick · 2025</text>
+          <line x1="184.0" y1="188" x2="398.4" y2="188" stroke="var(--data2)" stroke-width="2"/>
+          <line x1="184.0" y1="183" x2="184.0" y2="193" stroke="var(--data2)" stroke-width="2"/><line x1="398.4" y1="183" x2="398.4" y2="193" stroke="var(--data2)" stroke-width="2"/>
+          <circle cx="259.1" cy="188" r="4.5" fill="var(--data2)"/>
+          <text class="val" x="404.4" y="192">$302</text>
+        </svg>
+        <figcaption><b>Fig. 4</b> Predicted spending per person, with 95% intervals. Warwick's forecast rises over time while Monroe's holds flat.</figcaption>
+      </figure>
+    </article>
+
+    <div class="sec-head group"><h2>Earlier projects</h2><a class="label" href="https://github.com/tgubbe?tab=repositories" target="_blank" rel="noopener">All repositories →</a></div>
+    <!-- 1. Credit card default -->
+    <article class="project">
+      <div>
+        <p class="label">Classification · Python &amp; R</p>
+        <h3>Predicting Credit Card Default</h3>
+        <p class="desc">Can a bank tell which clients will miss a payment? Using 30,000 credit card clients from the UCI Machine Learning Repository, I cleaned and scaled the data, trimmed extreme credit-limit outliers (about 2% of rows), and compared three classifiers on a held-out test set of 8,799 clients.</p>
+        <ul class="find">
+          <li>All three models land near 81–82% overall accuracy, but that number hides the hard part.</li>
+          <li>Logistic regression catches only about 1 in 4 actual defaulters. Random forest and the neural network catch closer to 2 in 5.</li>
+          <li>A follow-up in R tuned the logistic threshold to trade precision for recall, and recommends adding credit score and utilization data.</li>
+        </ul>
+        <div class="tags"><span class="tag">scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">R Markdown</span><span class="tag">seaborn</span></div>
+        <div class="links">
+          <a href="https://github.com/tgubbe/CreditCardDefault" target="_blank" rel="noopener">Repository</a>
+          <a href="https://colab.research.google.com/github/tgubbe/CreditCardDefault/blob/main/Credit_Card_Default.ipynb" target="_blank" rel="noopener">Open notebook in Colab</a>
+          <a href="https://github.com/tgubbe/CreditCardDefault/blob/main/Credit-Card-Default-REVISED-V.5.pdf" target="_blank" rel="noopener">R report (PDF)</a>
+        </div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 440 210" role="img" aria-labelledby="f1t">
+          <title id="f1t">Share of actual defaulters each model caught: logistic regression 24%, random forest 38%, neural network 37%. Overall accuracy 81%, 81%, 82%.</title>
+          <!-- x scale: 0..1 maps to 130..420 (290px) -->
+          <g class="gl">
+            <line x1="130" y1="14" x2="130" y2="170"/><line x1="202.5" y1="14" x2="202.5" y2="170"/>
+            <line x1="275" y1="14" x2="275" y2="170"/><line x1="347.5" y1="14" x2="347.5" y2="170"/>
+            <line x1="420" y1="14" x2="420" y2="170"/>
+          </g>
+          <text class="ax" x="130" y="188" text-anchor="middle">0%</text>
+          <text class="ax" x="202.5" y="188" text-anchor="middle">25%</text>
+          <text class="ax" x="275" y="188" text-anchor="middle">50%</text>
+          <text class="ax" x="347.5" y="188" text-anchor="middle">75%</text>
+          <text class="ax" x="420" y="188" text-anchor="middle">100%</text>
+
+          <text class="lab" x="0" y="38">Logistic reg.</text>
+          <rect class="bar" x="130" y="22" width="235" height="10" rx="2" fill="var(--rule)"/>
+          <rect class="bar" x="130" y="36" width="69.6" height="14" rx="2" fill="var(--accent)"/>
+          <text class="val" x="205" y="47.5">24%</text>
+          <text class="val" x="371" y="31">81%</text>
+
+          <text class="lab" x="0" y="91">Random forest</text>
+          <rect class="bar" x="130" y="75" width="235" height="10" rx="2" fill="var(--rule)"/>
+          <rect class="bar" x="130" y="89" width="110.2" height="14" rx="2" fill="var(--accent)"/>
+          <text class="val" x="246" y="100.5">38%</text>
+          <text class="val" x="371" y="84">81%</text>
+
+          <text class="lab" x="0" y="144">Neural net</text>
+          <rect class="bar" x="130" y="128" width="237.8" height="10" rx="2" fill="var(--rule)"/>
+          <rect class="bar" x="130" y="142" width="107.3" height="14" rx="2" fill="var(--accent)"/>
+          <text class="val" x="243" y="153.5">37%</text>
+          <text class="val" x="374" y="137">82%</text>
+
+          <rect x="130" y="198" width="10" height="8" rx="1" fill="var(--rule)"/>
+          <text class="ax" x="145" y="205.5">overall accuracy</text>
+          <rect x="262" y="198" width="10" height="8" rx="1" fill="var(--accent)"/>
+          <text class="ax" x="277" y="205.5">defaulters caught (recall)</text>
+        </svg>
+        <figcaption><b>Fig. 5</b> High accuracy, low recall. With 77% of clients not defaulting, a model can score well while missing most of the people the bank cares about. Test set n = 8,799 (1,980 defaults).</figcaption>
+      </figure>
+    </article>
+
+    <!-- 2. Readability -->
+    <article class="project">
+      <div>
+        <p class="label">Text analysis · Python / NLTK</p>
+        <h3>Readability of Dickens and Hawthorne</h3>
+        <p class="desc">Two 19th-century novelists writing in the same era, one English and one American. Do their books read differently? I built a corpus of 11 works (over 1.6 million words) with the GutenTag corpus builder and scored each with three readability formulas, then looked at what drives the gap.</p>
+        <ul class="find">
+          <li>Every Hawthorne work scores harder than every Dickens work on all three indexes (ARI, Coleman-Liau, Flesch-Kincaid).</li>
+          <li>Dickens leans on short words; his word-length distribution peaks at 1 character, Hawthorne's at 3.</li>
+          <li>Average sentence length looks like the strongest driver: about 15–19 words per sentence for Dickens versus 22–30 for Hawthorne.</li>
+        </ul>
+        <div class="tags"><span class="tag">NLTK</span><span class="tag">type-token ratio</span><span class="tag">bigrams</span><span class="tag">matplotlib</span></div>
+        <div class="links">
+          <a href="https://github.com/tgubbe/PythonLinguisticsProject" target="_blank" rel="noopener">Repository</a>
+          <a href="https://colab.research.google.com/github/tgubbe/PythonLinguisticsProject/blob/main/Copy_of_LinguisticsProject.ipynb" target="_blank" rel="noopener">Open notebook in Colab</a>
+          <a href="https://github.com/tgubbe/PythonLinguisticsProject/blob/main/Readability%20of%20Charles%20Dickens%20and%20Nathaniel%20Hawthorne.pdf" target="_blank" rel="noopener">Paper (PDF)</a>
+        </div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 440 236" role="img" aria-labelledby="f2t">
+          <title id="f2t">Flesch-Kincaid grade level by book. Dickens: A Christmas Carol 5.7, A Tale of Two Cities 7.5, Bleak House 7.4, David Copperfield 7.7, Oliver Twist 7.5. Hawthorne: A Wonder Book 9.1, The Blithedale Romance 10.0, The House of the Seven Gables 10.7, Twice-Told Tales 10.7, The Scarlet Letter 11.8, Doctor Grimshawe's Secret 12.4.</title>
+          <!-- x scale: grade 4..14 maps to 190..430 (24px per grade) -->
+          <g class="gl">
+            <line x1="190" y1="8" x2="190" y2="212"/><line x1="238" y1="8" x2="238" y2="212"/>
+            <line x1="286" y1="8" x2="286" y2="212"/><line x1="334" y1="8" x2="334" y2="212"/>
+            <line x1="382" y1="8" x2="382" y2="212"/><line x1="430" y1="8" x2="430" y2="212"/>
+          </g>
+          <g class="ax" text-anchor="middle">
+            <text x="190" y="228">4</text><text x="238" y="228">6</text><text x="286" y="228">8</text>
+            <text x="334" y="228">10</text><text x="382" y="228">12</text><text x="430" y="228">14</text>
+          </g>
+          <!-- rows every 18px starting y=18 -->
+          <g class="lab" style="font-size:12px">
+            <text x="0" y="22">A Christmas Carol</text>
+            <text x="0" y="40">Bleak House</text>
+            <text x="0" y="58">A Tale of Two Cities</text>
+            <text x="0" y="76">Oliver Twist</text>
+            <text x="0" y="94">David Copperfield</text>
+            <text x="0" y="124">A Wonder Book</text>
+            <text x="0" y="142">The Blithedale Romance</text>
+            <text x="0" y="160">House of the Seven Gables</text>
+            <text x="0" y="178">Twice-Told Tales</text>
+            <text x="0" y="196">The Scarlet Letter</text>
+            <text x="0" y="214">Doctor Grimshawe's Secret</text>
+          </g>
+          <g stroke="var(--accent)" stroke-width="1.5">
+            <line x1="190" y1="18" x2="230.1" y2="18"/><line x1="190" y1="36" x2="271.8" y2="36"/>
+            <line x1="190" y1="54" x2="272.8" y2="54"/><line x1="190" y1="72" x2="273.8" y2="72"/>
+            <line x1="190" y1="90" x2="277.6" y2="90"/>
+          </g>
+          <g fill="var(--accent)">
+            <circle cx="230.1" cy="18" r="4.5"/><circle cx="271.8" cy="36" r="4.5"/>
+            <circle cx="272.8" cy="54" r="4.5"/><circle cx="273.8" cy="72" r="4.5"/>
+            <circle cx="277.6" cy="90" r="4.5"/>
+          </g>
+          <g stroke="var(--data2)" stroke-width="1.5">
+            <line x1="190" y1="120" x2="312.2" y2="120"/><line x1="190" y1="138" x2="334.2" y2="138"/>
+            <line x1="190" y1="156" x2="349.6" y2="156"/><line x1="190" y1="174" x2="351.5" y2="174"/>
+            <line x1="190" y1="192" x2="377.7" y2="192"/><line x1="190" y1="210" x2="390.9" y2="210"/>
+          </g>
+          <g fill="var(--data2)">
+            <circle cx="312.2" cy="120" r="4.5"/><circle cx="334.2" cy="138" r="4.5"/>
+            <circle cx="349.6" cy="156" r="4.5"/><circle cx="351.5" cy="174" r="4.5"/>
+            <circle cx="377.7" cy="192" r="4.5"/><circle cx="390.9" cy="210" r="4.5"/>
+          </g>
+          <text class="val" x="236" y="22">5.7</text>
+          <text class="val" x="399" y="214">12.4</text>
+          <text class="ax" x="430" y="96" text-anchor="end" fill="var(--accent)" style="fill:var(--accent)">DICKENS</text>
+          <text class="ax" x="430" y="114" text-anchor="end" style="fill:var(--data2)">HAWTHORNE</text>
+        </svg>
+        <figcaption><b>Fig. 6</b> Flesch-Kincaid grade level per book. No Hawthorne title reads easier than any Dickens title; the gap between the two authors is wider than the spread within either.</figcaption>
+      </figure>
+    </article>
+
+    <!-- 3. Superstore -->
+    <article class="project">
+      <div>
+        <p class="label">Exploratory analysis · Python</p>
+        <h3>Superstore Sales &amp; Profit EDA</h3>
+        <p class="desc">A retailer's four years of orders (9,994 rows, 2014–2017, from Kaggle), explored to inform marketing decisions about products, customers and regions. I cleaned the data, split dates into month and year, and broke sales and profit down by state, region, category and sub-category.</p>
+        <ul class="find">
+          <li>High sales don't guarantee profit: Texas ranks 3rd in sales but misses the top 20 states for profit.</li>
+          <li>Technology is the most profitable category; furniture sells a lot but earns little.</li>
+          <li>Sales climb every year toward the holiday season, and profits grew steadier by 2017.</li>
+        </ul>
+        <div class="tags"><span class="tag">pandas</span><span class="tag">seaborn</span><span class="tag">heatmaps</span><span class="tag">time series</span></div>
+        <div class="links">
+          <a href="https://github.com/tgubbe/SuperstoreEDA" target="_blank" rel="noopener">Repository</a>
+          <a href="https://colab.research.google.com/github/tgubbe/SuperstoreEDA/blob/main/Superstore.ipynb" target="_blank" rel="noopener">Open notebook in Colab</a>
+        </div>
+      </div>
+      <figure>
+        <table class="tbl">
+          <caption class="label" style="text-align:left;padding-bottom:.5rem">Where sales and profit disagree</caption>
+          <thead><tr><th scope="col">Finding</th><th scope="col">Sales</th><th scope="col">Profit</th></tr></thead>
+          <tbody>
+            <tr><td>California, New York</td><td class="up">Top 2</td><td class="up">Top 2</td></tr>
+            <tr><td>Texas</td><td class="up">#3</td><td class="down">Outside top 20</td></tr>
+            <tr><td>Michigan (binders)</td><td class="down">Well below CA</td><td class="up">Above CA</td></tr>
+            <tr><td>Technology</td><td class="up">High</td><td class="up">Highest</td></tr>
+            <tr><td>Furniture</td><td class="up">High</td><td class="down">Low</td></tr>
+          </tbody>
+        </table>
+        <figcaption><b>Fig. 7</b> Ranking states by revenue would point marketing at the wrong places. Only five states (NY, CA, WA, MI, VA) appear in both the top 10 for sales and the top 10 for profit.</figcaption>
+      </figure>
+    </article>
+  </section>
+
+  <footer>
+    <span>Travis Gubbe · San Diego State University</span>
+    <span>Data from UCI, Kaggle, and Project Gutenberg via GutenTag</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var views=["home","projects"];
+  function show(){
+    var h=(location.hash||"").replace("#","");
+    var v=views.indexOf(h)>=0?h:"home";
+    views.forEach(function(id){var el=document.getElementById(id);if(el)el.hidden=(id!==v);});
+    document.querySelectorAll("nav [data-view]").forEach(function(a){
+      if(a.getAttribute("data-view")===v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange",show);
+  show();
+})();
+</script>
+</body>
+</html>
